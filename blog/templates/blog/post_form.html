@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create/Edit Post</title>
+</head>
+<body>
+<h1>{% if post %}Edit Post{% else %}Create Post{% endif %}</h1>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="title" value="{{ post.title|default:'' }}" placeholder="Title" required>
+    <textarea name="content" placeholder="Content" required>{{ post.content|default:'' }}</textarea>
+    <button type="submit">Submit</button>
+</form>
+<a href="{% url 'post_list' %}">Cancel</a>
+</body>
+</html>
